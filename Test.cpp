@@ -3,11 +3,8 @@
 #include <vector>
 
 #include "OrgChart.hpp"
-
-using namespace std;
 using namespace ariel;
-
-
+using namespace std;
 
 TEST_CASE("ORGANIZTION") { 
 
@@ -32,8 +29,8 @@ TEST_CASE("ORGANIZTION") {
     CHECK_NOTHROW(org.add_root("god"));
     //-----------------------------------------
 
-    CHECK_NOTHROW(org.add_sub("god", "mom"));
     CHECK_NOTHROW(org.add_sub("god", "dad"));
+    CHECK_NOTHROW(org.add_sub("god", "mom"));
     CHECK_NOTHROW(org.add_sub("dad", "dvir"));
     CHECK_NOTHROW(org.add_sub("dad", "batEl"));
     CHECK_NOTHROW(org.add_sub("dvir", "mor"));

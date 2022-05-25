@@ -7,6 +7,11 @@ using namespace std;
 
 namespace ariel {
 
+/*
+this class represent a person in the  organization tree.
+each person has a name and a list of people under him in the tree.               
+*/
+
 class Node {
     
     //private:

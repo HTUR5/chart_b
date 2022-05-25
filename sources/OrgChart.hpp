@@ -23,7 +23,7 @@ namespace ariel {
             ~OrgChart();   
             OrgChart &operator=(OrgChart const &other) = default;
             OrgChart &operator=(OrgChart &&other) = default;
-            friend ostream& operator<<(ostream& out, const OrgChart &organization);
+            friend ostream& operator<<(ostream& os, const OrgChart &orgChart);
             OrgChart& add_root(const string &name);
             OrgChart& add_sub(const string& dad_name, const string& son_name);
             bool search_dad(Node* root, const string& dad, const string& son);
@@ -38,17 +38,19 @@ namespace ariel {
             
             public:
                 
-                Iterator(int mode, Node *ptr = nullptr) {
-                    if (ptr != nullptr) {
-                        switch (mode) {
-                            case 1:  
-                                build_level(ptr);
+                //the constructor get mode and pointer and build a tree 
+                //which begin in the pointer in some order according to the mode
+                Iterator(int chooseOrder, Node *pointer = nullptr) {
+                    if (pointer != nullptr) {
+                        switch (chooseOrder) {
+                            case 1:  //level-order
+                                build_level(pointer);
                                 break;
-                            case 2:
-                                build_reverse(ptr);
+                            case 2: //reverse-level-order
+                                build_reverse(pointer);
                                 break;
-                            case 3:
-                                build_preorder(ptr);
+                            case 3: //preorder
+                                build_preorder(pointer);
                                 break;
                         }
                         this->curr = itList.at(0);
@@ -58,6 +60,7 @@ namespace ariel {
                     }
                 }
 
+                //this functions build the itList according to the order
                 void build_level(Node* root);
                 void build_reverse(Node* root);
                 void build_preorder(Node* root);
@@ -96,6 +99,7 @@ namespace ariel {
 
             };
             
+            //orgChart functions
             Iterator begin_reverse_order();
             Iterator reverse_order();
             Iterator begin_level_order();

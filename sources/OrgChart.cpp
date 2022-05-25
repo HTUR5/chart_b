@@ -4,6 +4,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <list>
+
 using namespace std;
 using namespace ariel;
 
@@ -11,18 +13,10 @@ using namespace ariel;
         this->root = nullptr;
     }
 
-    // OrgChart::OrgChart(OrgChart const &org) {
-    //     this->root = nullptr;
-    // }
-
     OrgChart::~OrgChart() {
         (*this).free_chart(this->root);
     }
     
-    // OrgChart &OrgChart::operator=(OrgChart const &other) {
-    //     return *this;
-    // }
-
     OrgChart& OrgChart::add_root(const string &name) {
         if (name.empty()) {
             throw invalid_argument("the string is not illegal");
@@ -42,6 +36,7 @@ using namespace ariel;
         if (this->root == nullptr) {
             throw invalid_argument("enter a root first");
         }
+        //search the dad node and add the son to its childs
         if(!search_dad(this->root ,dad,son)) {
             throw invalid_argument("the dad is not exist");
         }
@@ -62,11 +57,8 @@ using namespace ariel;
         return false;
     }
 
-    ostream& ariel::operator<<(ostream& out, const OrgChart &organization) {
-        // for (auto it = organization.begin_level_order(); it != organization.end_level_order(); ++it) {
-        //     out << (*it) << " " ;
-        // }
-        return out;
+    ostream& ariel::operator<<(ostream& os, const OrgChart &orgChart) {
+        return os;
     }
 
     OrgChart::Iterator OrgChart::begin_level_order() {
